@@ -10,12 +10,6 @@ user1=input("Do you wants to do login or sign up>>___")
 
 def signup():
 
-    detalis2={}
-
-    details={}
-
-    detalis_list=[]
-
     user_name=input("ENTER YOUR FIRSTNAME>>>___")
 
     user_name2=input("ENTER YOUR SURNAME>>>____")
@@ -28,17 +22,7 @@ def signup():
 
     user_password=input("ENTER YOUR NEW PASSWORD>>>___")
 
-    c_l="ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-
-    s_l="abcdefghijklmnopqrstuvwxyz"
-
-    num="0123456789"
-
-    sp_ch="@#₹&!*$%¢€£©®"
-
     if len(user_password)>=8:
-
-        i=0
 
         var1=0
 
@@ -48,7 +32,15 @@ def signup():
 
         var4=0
 
-        while i<len(user_password):
+        c_l="ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+
+        s_l="abcdefghijklmnopqrstuvwxyz"
+
+        num="0123456789"
+
+        sp_ch="@#₹&!*$%¢€£©®"
+
+        for i in range(len(user_password)):
 
             if user_password[i] in c_l:
 
@@ -66,26 +58,25 @@ def signup():
 
                 var4+=1
 
-            i+=1
-
         if var1>=1 and var2>=1 and var3>=1 and var4>=1:
 
             confirm_password=input("ENTER AGAIN SAME PASSWORD>>>___")
 
             if user_password==confirm_password:
 
-                detalis2["Firstname"]=user_name
+                detalis2 = {
+                    "Firstname": user_name,
+                    "Surname": user_name2,
+                    "Mobile or Email": mobilenumber_or_email,
+                    "DOB": user_dob,
+                    "Gender": user_Gender,
+                    "User Password": user_password,
+                }
 
-                detalis2["Surname"]=user_name2
 
-                detalis2["Mobile or Email"]=mobilenumber_or_email
+                details={}
 
-                detalis2["DOB"]=user_dob
-
-                detalis2["Gender"]=user_Gender
-
-                detalis2["User Password"]=user_password
-
+                detalis_list=[]
 
                 with open("userdetails.json","a+") as file:
 
@@ -96,7 +87,7 @@ def signup():
                     details["users"]=detalis2
 
                 print("Congrats",user_name,"Successfully Resistered👍")
-                    
+
             else:
                 print("Both Password Are Not Same")
         else:
@@ -131,7 +122,7 @@ def login():
 
 def login_signup():
 
-    if user1=="signup" or user1=="sign up":
+    if user1 in ["signup", "sign up"]:
 
         signup()
 
